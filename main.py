@@ -1,5 +1,4 @@
 from common import utils, mainer_sql
-from common import constants as cs
 import json
 LOGGER = utils.setting_log()
 
