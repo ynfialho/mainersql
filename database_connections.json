@@ -1,0 +1,6 @@
+{
+    "conn_test":{
+        "type":"postgre",
+        "conn_string": "dbname=test user=postgres password=secret"
+    }
+}
