@@ -23,7 +23,7 @@ class MainerSQL:
     
     def __get_connection(self):
         engine_map = dict()
-        engine_map['sql_server'] = pyodbc.connect
+        engine_map['mssql'] = pyodbc.connect
         sql_engine = engine_map.get(self.db_config['type'])
         conn = sql_engine(self.db_config['conn_string'])
         return conn
