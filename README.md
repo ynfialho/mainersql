@@ -46,7 +46,7 @@ MainerSQL covers the following DBMS, locations, and formats;
 		</tr>
 	</thead>
 	<tbody>
-		<tr><td style="text-align: center; height=60px;"><img height="60" src="https://cdn.worldvectorlogo.com/logos/microsoft-sql-server.svg" />                                    </td><td style="width: 0px;">SQL Server</tr>
+		<tr><td style="text-align: center; height=40px;"><img height="40" src="https://cdn.worldvectorlogo.com/logos/microsoft-sql-server.svg" />                                    </td><td style="width: 0px;">SQL Server</tr>
 	</tbody>
 </table>
 
@@ -57,7 +57,7 @@ MainerSQL covers the following DBMS, locations, and formats;
 		</tr>
 	</thead>
 	<tbody>
-		<tr><td style="text-align: center; height=60px;"><img height="60" src="https://image.flaticon.com/icons/svg/567/567800.svg" />                                    </td><td style="width: 0px;">File System</tr>
+		<tr><td style="text-align: center; height=40px;"><img height="40" src="https://image.flaticon.com/icons/svg/567/567800.svg" />                                    </td><td style="width: 0px;">File System</tr>
 	</tbody>
 </table>
 
@@ -68,6 +68,6 @@ MainerSQL covers the following DBMS, locations, and formats;
 		</tr>
 	</thead>
 	<tbody>
-		<tr><td style="text-align: center; height=60px;"><img height="60" src="https://image.flaticon.com/icons/png/512/1263/1263920.png" />                                    </td><td style="width: 0px;">CSV</tr>
+		<tr><td style="text-align: center; height=40px;"><img height="40" src="https://image.flaticon.com/icons/png/512/1263/1263920.png" />                                    </td><td style="width: 0px;">CSV</tr>
 	</tbody>
 </table>
