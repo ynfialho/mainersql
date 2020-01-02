@@ -1,4 +1,5 @@
-from common import utils, mainer_sql
+from common import utils
+from mainersql import MainerSQL
 import json
 LOGGER = utils.setting_log()
 
@@ -7,11 +8,11 @@ def main():
     query = "select getdate() as test"
     
     LOGGER.info('Connecting to database')
-    mainersql = mainer_sql.MainerSQL(database_conn.get('conn_test'))
+    msql = MainerSQL(database_conn.get('conn_test'))
     LOGGER.info('Executing query....')
-    mainersql.execute_query(query)
+    msql.execute_query(query)
     LOGGER.info('Persist query result')
-    mainersql.persist_query()
+    msql.persist_query()
 
 if __name__ == "__main__":
     main()

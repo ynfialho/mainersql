@@ -1,6 +1,6 @@
 {
     "conn_test":{
         "type":"mssql",
-        "conn_string": "dbname=test user=dev password=secret"
+        "conn_string": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=test;DATABASE=dbtest;UID=user;PWD=password"
     }
 }
