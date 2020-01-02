@@ -3,7 +3,7 @@
 Data extraction framework from DBMS
 
 ### Installing
-The project is developed in a 19:04 Ubuntu environment and it is necessary that the unixodbc installed.
+The project is developed in a Ubuntu 19.04 environment and it is necessary that the unixodbc installed.
 
 ```shell
 sudo apt install unixodbc-dev && \
