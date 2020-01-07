@@ -6,12 +6,11 @@ Data extraction framework from DBMS
 The project is developed in a Ubuntu 19.04 environment and it is necessary that the unixodbc installed.
 
 ```shell
-sudo apt install unixodbc-dev && \
 git clone https://github.com/ynfialho/mainersql && \
 cd mainersql && \
 python3 -m pip install -r requirements.txt
 ```
-
+| :warning: after installing pyodbc read the following instructions [link](https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Linux)
 ### Usage
 #### Configuration
 With a simple JSON configuration, MainerSQL is ready for use.
