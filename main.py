@@ -5,7 +5,7 @@ LOGGER = utils.setting_log()
 
 def main():
     database_conn = json.load(open('./database_connections.json'))
-    query = "select getdate() as test"
+    query = "select * from customer"
     
     LOGGER.info('Connecting to database')
     msql = MainerSQL(database_conn.get('conn_test'))

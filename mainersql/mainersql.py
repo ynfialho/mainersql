@@ -31,7 +31,7 @@ class MainerSQL:
     def __parse_table_name(self, _query):
         q = re.search(r'from\s+([^ ,]+)(?:\s*,\s*([^ ,]+))*', _query.lower())
         tbl_name = q.group()
-        return tbl_name.split('.')[-1] if tbl_name else 'none'
+        return tbl_name.split('.')[-1].replace('from ', '') if tbl_name else 'none'
     
     def __zip_file(self, file_path, zip_mode='w'):
         from zipfile import ZipFile, ZIP_DEFLATED
@@ -48,7 +48,7 @@ class MainerSQL:
         self.row = row
         return row
     
-    def persist_query(self, path=None, mode_write='w', sep='|', quote=csv.QUOTE_NONNUMERIC, flag_zip=False):
+    def persist_query(self, path=None, mode_write='w', sep='\t', quote=csv.QUOTE_NONNUMERIC, flag_zip=False):
         if path:
             path_local = path
         else:
