@@ -106,3 +106,4 @@ resolv.conf
 
 # mypy
 .mypy_cache/
+*.cfg
