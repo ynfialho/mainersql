@@ -1,72 +1,86 @@
 # MainerSQL
 
-Data extraction framework from DBMS
+Data extraction framework for RDBMS — extract query results from PostgreSQL or SQL Server and export to CSV, JSON, or Parquet.
 
-### Installing
-The project is developed in a Ubuntu 19.04 environment and it is necessary that the unixodbc installed.
+## Install
 
-```shell
-git clone https://github.com/ynfialho/mainersql && \
-cd mainersql && \
-python3 -m pip install -r requirements.txt
-```
-| :warning: after installing pyodbc read the following instructions [link](https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Linux)
-### Usage
-#### Configuration
-With a simple JSON configuration, MainerSQL is ready for use.
-
-```json
-{
-    "conn_dev":{
-        "type":"mssql",
-        "conn_string": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=test;DATABASE=dbtest;UID=user;PWD=password"
-    }
-}
-```
-#### Run
-```python
-from mainersql import MainerSQL
-import json
-database_conn = json.load(open('./database_connections.json'))
-query = "select getdate() as test"
-
-msql = mainersql.MainerSQL(database_conn.get('conn_test'))
-msql.execute_query(query)
-msql.persist_query()
+```bash
+git clone https://github.com/ynfialho/mainersql
+cd mainersql
+uv sync
 ```
 
-### Coverage
-MainerSQL covers the following DBMS, locations, and formats;
+## Setup
 
-<table>
-	<thead>
-		<tr>
-			<th colspan="2">DBMS</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr><td style="text-align: center; height=40px;"><img height="40" src="https://cdn.worldvectorlogo.com/logos/microsoft-sql-server.svg" />                                    </td><td style="width: 0px;">SQL Server</tr>
-	</tbody>
-</table>
+Set the `DATABASE_URL` environment variable with your database connection string:
 
-<table>
-	<thead>
-		<tr>
-			<th colspan="2">Locations</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr><td style="text-align: center; height=40px;"><img height="40" src="https://image.flaticon.com/icons/svg/567/567800.svg" />                                    </td><td style="width: 0px;">File System</tr>
-	</tbody>
-</table>
+```bash
+# PostgreSQL
+export DATABASE_URL="postgresql://user:password@host:5432/dbname"
 
-<table>
-	<thead>
-		<tr>
-			<th colspan="2">Formats</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr><td style="text-align: center; height=40px;"><img height="40" src="https://image.flaticon.com/icons/png/512/1263/1263920.png" />                                    </td><td style="width: 0px;">CSV</tr>
-	</tbody>
-</table>
+# SQL Server (MSSQL)
+export DATABASE_URL="mssql+pyodbc://user:password@host:1433/dbname?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes"
+```
+
+## Docker (for local testing)
+
+Start test databases with Docker Compose:
+
+```bash
+docker compose -f iac/docker-compose.yml up -d
+```
+
+This starts:
+- **PostgreSQL 16** on port `5432` (user: `test`, password: `test`, db: `testdb`)
+- **SQL Server 2022** on port `1433` (user: `sa`, password: `Test1234!`)
+
+Stop containers:
+```bash
+docker compose -f iac/docker-compose.yml down
+```
+
+## Usage
+
+```bash
+# Display results in the terminal (default)
+DATABASE_URL="postgresql://..." uv run mainersql extract --query "SELECT * FROM users"
+
+# Export to CSV (semicolon-separated)
+DATABASE_URL="postgresql://..." uv run mainersql --output csv extract --query "SELECT * FROM users"
+
+# Export to JSON
+DATABASE_URL="postgresql://..." uv run mainersql --output json --output-path ./results.json extract --query "SELECT * FROM users"
+
+# Export to Parquet
+DATABASE_URL="postgresql://..." uv run mainersql --output parquet --output-path ./results.parquet extract --query "SELECT * FROM users"
+```
+
+View available options:
+```bash
+uv run mainersql --help
+uv run mainersql extract --help
+```
+
+## Running Tests
+
+Unit tests (no database required):
+```bash
+uv run pytest tests/unit/ -v
+```
+
+Integration tests (requires Docker containers running):
+```bash
+docker compose -f iac/docker-compose.yml up -d
+uv run pytest tests/integration/ -v -m integration
+```
+
+## Architecture
+
+| Module | Description |
+|--------|-------------|
+| `cli/` | Click CLI — `extract` command + `--output` / `--output-path` flags |
+| `repository/` | `BaseRepository` ABC + `SQLAlchemyRepository` (PostgreSQL, MSSQL) |
+| `models/` | `ConnectionConfig` dataclass, `parse_dsn()`, `QueryResult` |
+| `common/` | `write_output()` — Arrow → CSV / JSON / Parquet / rich console |
+| `tests/` | Unit tests (`tests/unit/`) and integration tests (`tests/integration/`) |
+| `iac/` | Docker Compose for local test databases |
