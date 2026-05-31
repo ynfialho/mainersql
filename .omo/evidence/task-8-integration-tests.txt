@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.9, pytest-9.0.3, pluggy-1.6.0 -- /Users/yurifialho/Documents/projects/mainersql/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/yurifialho/Documents/projects/mainersql
+configfile: pyproject.toml
+collecting ... collected 3 items
+
+tests/integration/test_extract.py::test_pg_extract_select_1 PASSED       [ 33%]
+tests/integration/test_extract.py::test_mssql_extract_select_1 SKIPPED   [ 66%]
+tests/integration/test_extract.py::test_pg_extract_output_csv PASSED     [100%]
+
+========================= 2 passed, 1 skipped in 0.10s =========================

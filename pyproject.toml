@@ -26,6 +26,11 @@ package = true
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
+[tool.pytest.ini_options]
+markers = [
+    "integration: marks tests as integration tests (require Docker)",
+]
+
 [tool.setuptools]
 include-package-data = false
 
