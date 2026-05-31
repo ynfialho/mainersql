@@ -1,6 +1,0 @@
-{
-    "conn_test":{
-        "type":"mssql",
-        "conn_string": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=master;UID=sa;PWD=yourStrong(!)Password"
-    }
-}
