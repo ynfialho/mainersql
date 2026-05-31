@@ -1,0 +1,24 @@
+Usage: mainersql [OPTIONS] COMMAND [ARGS]...
+
+  MainerSQL — RDBMS data extraction tool.
+
+Options:
+  --output [console|csv|json|parquet]
+                                  Output format.
+  --output-path TEXT              Output file path. Auto-generated if not
+                                  specified.
+  --help                          Show this message and exit.
+
+Commands:
+  extract  Execute a SQL query and export the results.
+---
+Usage: mainersql extract [OPTIONS]
+
+  Execute a SQL query and export the results.
+
+Options:
+  --query TEXT  SQL query to execute.  [required]
+  --help        Show this message and exit.
+---
+Error: DATABASE_URL environment variable is not set.
+exit: 1
